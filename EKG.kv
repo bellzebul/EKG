@@ -1,0 +1,880 @@
+<Container>:
+
+    MDBottomNavigation:
+
+        MDBottomNavigationItem:
+            name: "screen1"
+            text: "P"
+            icon: "vector-point"
+            BoxLayout:
+                size_hint: 1,1
+                orientation: "vertical"
+                padding: 0
+                spacing: 0
+                BoxLayout:
+                    padding: 0
+                    size_hint: 1,0.02
+                    orientation: "vertical"
+                    MDScreen:
+                        MDFlatButton:
+                            size_hint: 0.05, 0.005
+                            id: file
+                            text: 'File'
+                            pos_hint: {'center_x': 0.04, 'center_y': 0.1}
+                            on_release: root.dropdown_file()
+
+                        MDFlatButton:
+                            size_hint: 0.05, 0.005
+                            id: noise
+                            text: 'Noise'
+                            pos_hint: {'center_x': 0.124, 'center_y': 0.1}
+                            on_release: root.dropdown_noise()
+
+
+
+                BoxLayout:
+                    padding: 0
+                    size_hint: 1,0.8
+                    orientation: "horizontal"
+                    BoxLayout:
+                        padding: 0
+                        size_hint: 0.7,0.95
+                        orientation: "vertical"
+                        id: graph_p
+
+
+                    BoxLayout:
+                        padding: 0
+                        size_hint: 0.3,1
+                        orientation: "vertical"
+
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 1,0.2
+                            orientation: "vertical"
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 1,0.1
+                            orientation: "vertical"
+                            padding: 15
+                            Label:
+                                text: f'Amplitude:  {round(ampl_p.value, 2)}'
+                                font_size: 23
+                                pos_hint: {'center_x': 0.18, 'center_y': 0.5}
+
+                            MDSlider:
+
+                                id: ampl_p
+                                min: -1
+                                max: 1
+                                value: root.get_default_slider_value('P', 0)
+                                step: 0.01
+                                hint: False
+                                on_value: root.update_plot('P', 0, ampl_p.value)
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 1,0.1
+                            orientation: "vertical"
+                            padding: 15
+                            Label:
+                                text: f"Time: {round(time_p.value, 3)}"
+                                font_size: 23
+                                pos_hint: {'center_x': 0.12, 'center_y': 0.5}
+
+                            MDSlider:
+                                id: time_p
+                                min: 0
+                                max: 1
+                                value: root.get_default_slider_value('P', 3)
+                                step: 0.00001
+                                hint: False
+                                on_value: root.update_plot('P', 3, time_p.value)
+
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 1,0.1
+                            orientation: "vertical"
+                            padding: 15
+                            Label:
+                                text: f"b1:  {round(b1_p.value, 3)}"
+                                font_size: 23
+                                pos_hint: {'center_x': 0.1, 'center_y': 0.5}
+                            MDSlider:
+#                                thumb_color_active: [0,0,0,1]
+
+                                id: b1_p
+                                min: 0.000001
+                                max: 0.1
+                                value: root.get_default_slider_value('P', 1)
+                                step: 0.0001
+                                hint: False
+                                on_value: root.update_plot('P', 1, b1_p.value)
+
+
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 1,0.1
+                            orientation: "vertical"
+                            padding: 15
+                            Label:
+                                text: f"b2:  {round(b2_p.value, 3)}"
+                                font_size: 23
+                                pos_hint: {'center_x': 0.1, 'center_y': 0.5}
+                            MDSlider:
+    #                            thumb_color_active: [0,0,0,1]
+                                id: b2_p
+                                min: 0.00001
+                                max: 0.02
+                                value: root.get_default_slider_value('P', 2)
+                                step: 0.0001
+                                hint: False
+                                on_value: root.update_plot('P', 2, b2_p.value)
+
+
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 0.45,0.2
+                            orientation: "vertical"
+                            padding: 50
+                            MDTextField:
+                                hint_text: "HR"
+                                mode: "rectangle"
+                                text: "60"
+
+
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 1,0.3
+                            orientation: "vertical"
+                            padding: 15
+
+
+        MDBottomNavigationItem:
+            name: "screen2"
+            text: "Q"
+            icon: "vector-point"
+            BoxLayout:
+                size_hint: 1,1
+                orientation: "vertical"
+                padding: 0
+                spacing: 0
+                BoxLayout:
+                    padding: 0
+                    size_hint: 1,0.02
+                    orientation: "vertical"
+                    MDScreen:
+                        MDFlatButton:
+                            size_hint: 0.05, 0.005
+                            id: file
+                            text: 'File'
+                            pos_hint: {'center_x': 0.04, 'center_y': 0.1}
+                            on_release: root.dropdown_file()
+
+                        MDFlatButton:
+                            size_hint: 0.05, 0.005
+                            id: noise
+                            text: 'Noise'
+                            pos_hint: {'center_x': 0.124, 'center_y': 0.1}
+                            on_release: root.dropdown_noise()
+
+
+                BoxLayout:
+                    padding: 0
+                    size_hint: 1,0.8
+                    orientation: "horizontal"
+                    BoxLayout:
+                        canvas.before:
+                            Color:
+                                rgb: [0.15, 0.15, 0.15, 0.7]
+                            Rectangle:
+                                size: self.size
+                        padding: 0
+                        size_hint: 0.7,0.95
+                        orientation: "vertical"
+                        id: graph_q
+
+
+                    BoxLayout:
+                        padding: 0
+                        size_hint: 0.3,1
+                        orientation: "vertical"
+
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 1,0.2
+                            orientation: "vertical"
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 1,0.1
+                            orientation: "vertical"
+                            padding: 15
+                            Label:
+                                text: f'Amplitude:  {round(ampl_q.value, 2)}'
+                                font_size: 23
+                                pos_hint: {'center_x': 0.18, 'center_y': 0.5}
+
+                            MDSlider:
+    #                            thumb_color_active: [0,0,0,1]
+                                id: ampl_q
+                                min: -1
+                                max: 1
+                                value: root.get_default_slider_value('Q', 0)
+                                step: 0.01
+                                hint: False
+                                on_value: root.update_plot('Q', 0, ampl_q.value)
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 1,0.1
+                            orientation: "vertical"
+                            padding: 15
+                            Label:
+                                text: f"Time: {round(time_q.value, 3)}"
+                                font_size: 23
+                                pos_hint: {'center_x': 0.12, 'center_y': 0.5}
+                            MDSlider:
+                                id: time_q
+                                min: 0
+                                max: 1
+                                value: root.get_default_slider_value('Q', 3)
+                                step: 0.00001
+                                hint: False
+                                on_value: root.update_plot('Q', 3, time_q.value)
+
+
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 1,0.1
+                            orientation: "vertical"
+                            padding: 15
+                            Label:
+                                text: f"b1:  {round(b1_q.value, 3)}"
+                                font_size: 23
+                                pos_hint: {'center_x': 0.1, 'center_y': 0.5}
+                            MDSlider:
+#                                thumb_color_active: [0,0,0,1]
+
+                                id: b1_q
+                                min: 0.00001
+                                max: 0.02
+                                value: root.get_default_slider_value('Q', 1)
+                                step: 0.0001
+                                hint: False
+                                on_value: root.update_plot('Q', 1, b1_q.value)
+
+
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 1,0.1
+                            orientation: "vertical"
+                            padding: 15
+                            Label:
+                                text: f"b2:  {round(b2_q.value, 3)}"
+                                font_size: 23
+                                pos_hint: {'center_x': 0.1, 'center_y': 0.5}
+                            MDSlider:
+    #                            thumb_color_active: [0,0,0,1]
+                                id: b2_q
+                                min: 0.00001
+                                max: 0.02
+                                value: root.get_default_slider_value('Q', 2)
+                                step: 0.0001
+                                hint: False
+                                on_value: root.update_plot('Q', 2, b2_q.value)
+
+
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 0.45,0.2
+                            orientation: "vertical"
+                            padding: 50
+                            MDTextField:
+                                hint_text: "HR"
+                                mode: "rectangle"
+                                text: "60"
+
+
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 1,0.3
+                            orientation: "vertical"
+                            padding: 15
+
+
+
+        MDBottomNavigationItem:
+            name: "screen3"
+            text: "R"
+            icon: "vector-point"
+            BoxLayout:
+                size_hint: 1,1
+                orientation: "vertical"
+                padding: 0
+                spacing: 0
+                BoxLayout:
+                    padding: 0
+                    size_hint: 1,0.02
+                    orientation: "vertical"
+                    MDScreen:
+                        MDFlatButton:
+                            size_hint: 0.05, 0.005
+                            id: file
+                            text: 'File'
+                            pos_hint: {'center_x': 0.04, 'center_y': 0.1}
+                            on_release: root.dropdown_file()
+
+                        MDFlatButton:
+                            size_hint: 0.05, 0.005
+                            id: noise
+                            text: 'Noise'
+                            pos_hint: {'center_x': 0.124, 'center_y': 0.1}
+                            on_release: root.dropdown_noise()
+
+
+                BoxLayout:
+                    padding: 0
+                    size_hint: 1,0.8
+                    orientation: "horizontal"
+                    BoxLayout:
+                        padding: 0
+                        size_hint: 0.7,0.95
+                        orientation: "vertical"
+                        id: graph_r
+
+
+                    BoxLayout:
+                        padding: 0
+                        size_hint: 0.3,1
+                        orientation: "vertical"
+
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 1,0.2
+                            orientation: "vertical"
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 1,0.1
+                            orientation: "vertical"
+                            padding: 15
+                            Label:
+                                text: f'Amplitude:  {round(ampl_r.value, 2)}'
+                                font_size: 23
+                                pos_hint: {'center_x': 0.18, 'center_y': 0.5}
+
+                            MDSlider:
+
+                                id: ampl_r
+                                min: -1
+                                max: 1.5
+                                value: root.get_default_slider_value('R', 0)
+                                step: 0.01
+                                hint: False
+                                on_value: root.update_plot('R', 0, ampl_r.value)
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 1,0.1
+                            orientation: "vertical"
+                            padding: 15
+                            Label:
+                                text: f"Time: {round(time_r.value, 3)}"
+                                font_size: 23
+                                pos_hint: {'center_x': 0.12, 'center_y': 0.5}
+                            MDSlider:
+                                id: time_r
+                                min: 0
+                                max: 1
+                                value: root.get_default_slider_value('R', 3)
+                                step: 0.00001
+                                hint: False
+                                on_value: root.update_plot('R', 3, time_r.value)
+
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 1,0.1
+                            orientation: "vertical"
+                            padding: 15
+                            Label:
+                                text: f"b1:  {round(b1_r.value, 3)}"
+                                font_size: 23
+                                pos_hint: {'center_x': 0.1, 'center_y': 0.5}
+                            MDSlider:
+#                                thumb_color_active: [0,0,0,1]
+
+                                id: b1_r
+                                min: 0.00001
+                                max: 0.02
+                                value: root.get_default_slider_value('R', 1)
+                                step: 0.0001
+                                hint: False
+                                on_value: root.update_plot('R', 1, b1_r.value)
+
+
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 1,0.1
+                            orientation: "vertical"
+                            padding: 15
+                            Label:
+                                text: f"b2:  {round(b2_r.value, 3)}"
+                                font_size: 23
+                                pos_hint: {'center_x': 0.1, 'center_y': 0.5}
+                            MDSlider:
+    #                            thumb_color_active: [0,0,0,1]
+                                id: b2_r
+                                min: 0.00001
+                                max: 0.02
+                                value: root.get_default_slider_value('R', 2)
+                                step: 0.0001
+                                hint: False
+                                on_value: root.update_plot('R', 2, b2_r.value)
+
+
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 0.45,0.2
+                            orientation: "vertical"
+                            padding: 50
+                            MDTextField:
+                                hint_text: "HR"
+                                mode: "rectangle"
+                                text: "60"
+
+
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 1,0.3
+                            orientation: "vertical"
+                            padding: 15
+
+        MDBottomNavigationItem:
+            name: "screen4"
+            text: "S"
+            icon: "vector-point"
+            BoxLayout:
+                size_hint: 1,1
+                orientation: "vertical"
+                padding: 0
+                spacing: 0
+                BoxLayout:
+                    padding: 0
+                    size_hint: 1,0.02
+                    orientation: "vertical"
+                    MDScreen:
+                        MDFlatButton:
+                            size_hint: 0.05, 0.005
+                            id: file
+                            text: 'File'
+                            pos_hint: {'center_x': 0.04, 'center_y': 0.1}
+                            on_release: root.dropdown_file()
+
+                        MDFlatButton:
+                            size_hint: 0.05, 0.005
+                            id: noise
+                            text: 'Noise'
+                            pos_hint: {'center_x': 0.124, 'center_y': 0.1}
+                            on_release: root.dropdown_noise()
+
+
+
+                BoxLayout:
+                    padding: 0
+                    size_hint: 1,0.8
+                    orientation: "horizontal"
+                    BoxLayout:
+                        padding: 0
+                        size_hint: 0.7,0.95
+                        orientation: "vertical"
+                        id: graph_s
+
+
+                    BoxLayout:
+                        padding: 0
+                        size_hint: 0.3,1
+                        orientation: "vertical"
+
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 1,0.2
+                            orientation: "vertical"
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 1,0.1
+                            orientation: "vertical"
+                            padding: 15
+                            Label:
+                                text: f'Amplitude:  {round(ampl_s.value, 2)}'
+                                font_size: 23
+                                pos_hint: {'center_x': 0.18, 'center_y': 0.5}
+
+                            MDSlider:
+
+                                id: ampl_s
+                                min: -1
+                                max: 1
+                                value: root.get_default_slider_value('S', 0)
+                                step: 0.01
+                                hint: False
+                                on_value: root.update_plot('S', 0, ampl_s.value)
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 1,0.1
+                            orientation: "vertical"
+                            padding: 15
+                            Label:
+                                text: f"Time: {round(time_s.value, 3)}"
+                                font_size: 23
+                                pos_hint: {'center_x': 0.12, 'center_y': 0.5}
+                            MDSlider:
+                                id: time_s
+                                min: 0
+                                max: 1
+                                value: root.get_default_slider_value('S', 3)
+                                step: 0.00001
+                                hint: False
+                                on_value: root.update_plot('S', 3, time_s.value)
+
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 1,0.1
+                            orientation: "vertical"
+                            padding: 15
+                            Label:
+                                text: f"b1:  {round(b1_s.value, 3)}"
+                                font_size: 23
+                                pos_hint: {'center_x': 0.1, 'center_y': 0.5}
+                            MDSlider:
+#                                thumb_color_active: [0,0,0,1]
+
+                                id: b1_s
+                                min: 0.00001
+                                max: 0.02
+                                value: root.get_default_slider_value('S', 1)
+                                step: 0.0001
+                                hint: False
+                                on_value: root.update_plot('S', 1, b1_s.value)
+
+
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 1,0.1
+                            orientation: "vertical"
+                            padding: 15
+                            Label:
+                                text: f"b2:  {round(b2_s.value, 3)}"
+                                font_size: 23
+                                pos_hint: {'center_x': 0.1, 'center_y': 0.5}
+                            MDSlider:
+    #                            thumb_color_active: [0,0,0,1]
+                                id: b2_s
+                                min: 0.00001
+                                max: 0.02
+                                value: root.get_default_slider_value('S', 2)
+                                step: 0.0001
+                                hint: False
+                                on_value: root.update_plot('S', 2, b2_s.value)
+
+
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 0.45,0.2
+                            orientation: "vertical"
+                            padding: 50
+                            MDTextField:
+                                hint_text: "HR"
+                                mode: "rectangle"
+                                text: "60"
+
+
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 1,0.3
+                            orientation: "vertical"
+                            padding: 15
+
+        MDBottomNavigationItem:
+            name: "screen5"
+            text: "ST"
+            icon: "vector-point"
+            BoxLayout:
+                size_hint: 1,1
+                orientation: "vertical"
+                padding: 0
+                spacing: 0
+                BoxLayout:
+                    padding: 0
+                    size_hint: 1,0.02
+                    orientation: "vertical"
+                    MDScreen:
+                        MDFlatButton:
+                            size_hint: 0.05, 0.005
+                            id: file
+                            text: 'File'
+                            pos_hint: {'center_x': 0.04, 'center_y': 0.1}
+                            on_release: root.dropdown_file()
+
+                        MDFlatButton:
+                            size_hint: 0.05, 0.005
+                            id: noise
+                            text: 'Noise'
+                            pos_hint: {'center_x': 0.124, 'center_y': 0.1}
+                            on_release: root.dropdown_noise()
+
+
+
+                BoxLayout:
+                    padding: 0
+                    size_hint: 1,0.8
+                    orientation: "horizontal"
+                    BoxLayout:
+                        padding: 0
+                        size_hint: 0.7,0.95
+                        orientation: "vertical"
+                        id: graph_st
+
+
+                    BoxLayout:
+                        padding: 0
+                        size_hint: 0.3,1
+                        orientation: "vertical"
+
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 1,0.2
+                            orientation: "vertical"
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 1,0.1
+                            orientation: "vertical"
+                            padding: 15
+                            Label:
+                                text: f'Amplitude:  {round(ampl_st.value, 2)}'
+                                font_size: 23
+                                pos_hint: {'center_x': 0.18, 'center_y': 0.5}
+
+                            MDSlider:
+
+                                id: ampl_st
+                                min: -1
+                                max: 1
+                                value: root.get_default_slider_value('ST', 0)
+                                step: 0.01
+                                hint: False
+                                on_value: root.update_plot('ST', 0, ampl_st.value)
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 1,0.1
+                            orientation: "vertical"
+                            padding: 15
+                            Label:
+                                text: f"Time: {round(time_st.value, 3)}"
+                                font_size: 23
+                                pos_hint: {'center_x': 0.12, 'center_y': 0.5}
+                            MDSlider:
+                                id: time_st
+                                min: 0
+                                max: 1
+                                value: root.get_default_slider_value('ST', 3)
+                                step: 0.00001
+                                hint: False
+                                on_value: root.update_plot('ST', 3, time_st.value)
+
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 1,0.1
+                            orientation: "vertical"
+                            padding: 15
+                            Label:
+                                text: f"b1:  {round(b1_st.value, 3)}"
+                                font_size: 23
+                                pos_hint: {'center_x': 0.1, 'center_y': 0.5}
+                            MDSlider:
+#                                thumb_color_active: [0,0,0,1]
+
+                                id: b1_st
+                                min: 0.00001
+                                max: 0.03
+                                value: root.get_default_slider_value('ST', 1)
+                                step: 0.0001
+                                hint: False
+                                on_value: root.update_plot('ST', 1, b1_st.value)
+
+
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 1,0.1
+                            orientation: "vertical"
+                            padding: 15
+                            Label:
+                                text: f"b2:  {round(b2_st.value, 3)}"
+                                font_size: 23
+                                pos_hint: {'center_x': 0.1, 'center_y': 0.5}
+                            MDSlider:
+    #                            thumb_color_active: [0,0,0,1]
+                                id: b2_st
+                                min: 0.00001
+                                max: 0.02
+                                value: root.get_default_slider_value('ST', 2)
+                                step: 0.0001
+                                hint: False
+                                on_value: root.update_plot('ST', 2, b2_st.value)
+
+
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 0.45,0.2
+                            orientation: "vertical"
+                            padding: 50
+                            MDTextField:
+                                hint_text: "HR"
+                                mode: "rectangle"
+                                text: "60"
+
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 1,0.3
+                            orientation: "vertical"
+                            padding: 15
+
+        MDBottomNavigationItem:
+            name: "screen6"
+            text: "T"
+            icon: "vector-point"
+            BoxLayout:
+                size_hint: 1,1
+                orientation: "vertical"
+                padding: 0
+                spacing: 0
+                BoxLayout:
+                    padding: 0
+                    size_hint: 1,0.02
+                    orientation: "vertical"
+                    MDScreen:
+                        MDFlatButton:
+                            size_hint: 0.05, 0.005
+                            id: file
+                            text: 'File'
+                            pos_hint: {'center_x': 0.04, 'center_y': 0.1}
+                            on_release: root.dropdown_file()
+
+                        MDFlatButton:
+                            size_hint: 0.05, 0.005
+                            id: noise
+                            text: 'Noise'
+                            pos_hint: {'center_x': 0.124, 'center_y': 0.1}
+                            on_release: root.dropdown_noise()
+
+
+                BoxLayout:
+                    padding: 0
+                    size_hint: 1,0.8
+                    orientation: "horizontal"
+                    BoxLayout:
+                        padding: 0
+                        size_hint: 0.7,0.95
+                        orientation: "vertical"
+                        id: graph_t
+
+
+                    BoxLayout:
+                        padding: 0
+                        size_hint: 0.3,1
+                        orientation: "vertical"
+
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 1,0.2
+                            orientation: "vertical"
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 1,0.1
+                            orientation: "vertical"
+                            padding: 15
+                            Label:
+                                text: f'Amplitude:  {round(ampl_t.value, 2)}'
+                                font_size: 23
+                                pos_hint: {'center_x': 0.18, 'center_y': 0.5}
+
+                            MDSlider:
+
+                                id: ampl_t
+                                min: -1
+                                max: 1
+                                value: root.get_default_slider_value('T', 0)
+                                step: 0.01
+                                hint: False
+                                on_value: root.update_plot('T', 0, ampl_t.value)
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 1,0.1
+                            orientation: "vertical"
+                            padding: 15
+                            Label:
+                                text: f"Time: {round(time_t.value, 3)}"
+                                font_size: 23
+                                pos_hint: {'center_x': 0.12, 'center_y': 0.5}
+                            MDSlider:
+                                id: time_t
+                                min: 0
+                                max: 1
+                                value: root.get_default_slider_value('T', 3)
+                                step: 0.00001
+                                hint: False
+                                on_value: root.update_plot('T', 3, time_t.value)
+
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 1,0.1
+                            orientation: "vertical"
+                            padding: 15
+                            Label:
+                                text: f"b1:  {round(b1_t.value, 3)}"
+                                font_size: 23
+                                pos_hint: {'center_x': 0.1, 'center_y': 0.5}
+                            MDSlider:
+#                                thumb_color_active: [0,0,0,1]
+
+                                id: b1_t
+                                min: 0.00001
+                                max: 1
+                                value: root.get_default_slider_value('T', 1)
+                                step: 0.0001
+                                hint: False
+                                on_value: root.update_plot('T', 1, b1_t.value)
+
+
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 1,0.1
+                            orientation: "vertical"
+                            padding: 15
+                            Label:
+                                text: f"b2:  {round(b2_t.value, 3)}"
+                                font_size: 23
+                                pos_hint: {'center_x': 0.1, 'center_y': 0.5}
+                            MDSlider:
+    #                            thumb_color_active: [0,0,0,1]
+                                id: b2_t
+                                min: 0.00001
+                                max: 0.1
+                                value: root.get_default_slider_value('T', 2)
+                                step: 0.0001
+                                hint: False
+                                on_value: root.update_plot('T', 2, b2_t.value)
+
+
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 0.45,0.2
+                            orientation: "vertical"
+                            padding: 50
+                            MDTextField:
+                                id: hr_t
+                                hint_text: "HR"
+                                mode: "rectangle"
+                                text: "60"
+
+
+                        BoxLayout:
+                            padding: 0
+                            size_hint: 1,0.3
+                            orientation: "vertical"
+                            padding: 15
